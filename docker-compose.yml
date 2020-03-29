@@ -1,0 +1,31 @@
+version: "3.4"
+
+services:
+  cli:
+    container_name: hospital-cli
+    command: "composer install"
+    build:
+      context: ./docker
+      target: cli
+    volumes:
+      - ./:/var/www
+
+  app:
+    container_name: hospital-app
+    build: ./docker
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+
+  db:
+    container_name: hospital-db
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: default
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - '3306:3306'
