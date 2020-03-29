@@ -11,6 +11,6 @@ class IndexController extends Controller
 {
     public function index(): JsonResponse
     {
-        return Response()->json(['message' => 'documentation']);
+        return response()->json(['message' => 'documentation'], 200);
     }
 }
