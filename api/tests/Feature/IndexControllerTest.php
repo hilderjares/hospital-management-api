@@ -17,12 +17,10 @@ class IndexControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testIfDocumentationResourceReturnsMessage()
+    public function testIfDocumentationResourceReturnsView()
     {
         $response = $this->json("GET", self::URI);
 
-        $response->assertExactJson([
-            "message" => "documentation",
-        ]);
+        $response->assertViewIs('index');
     }
 }

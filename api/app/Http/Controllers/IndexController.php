@@ -1,16 +1,13 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Response;
 
 class IndexController extends Controller
 {
-    public function index(): JsonResponse
+    public function index()
     {
-        return response()->json(['message' => 'documentation'], 200);
+        return response()->view('index');
     }
 }
