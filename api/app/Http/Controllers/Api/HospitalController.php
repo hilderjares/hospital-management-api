@@ -27,7 +27,7 @@ final class HospitalController extends Controller
     {
         $hospitals = $this->hospitalEloquentRepository->getAll();
 
-        return response()->json($hospitals, 200, ['Accept: application/json']);
+        return response()->json($hospitals, 200);
     }
 
     public function store(HospitalRequest $request): JsonResponse
