@@ -18,3 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/doc', 'IndexController@index');
+
+Route::prefix('/hospital')->group(function () {
+    Route::post('/', 'Api\HospitalController@store');
+    Route::get('/', 'Api\HospitalController@index');
+    Route::get('/{id}', 'Api\HospitalController@show');
+    Route::delete('/{id}', 'Api\HospitalController@destroy');
+    Route::put('/{id}', 'Api\HospitalController@update');
+});

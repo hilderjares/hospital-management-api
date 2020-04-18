@@ -1,31 +1,22 @@
 ############################## BASE #####################################
-FROM ubuntu:latest as base
+FROM php:7.3-apache as base
 
-RUN apt-get update \
-    && apt-get -y install software-properties-common \
-    && add-apt-repository ppa:ondrej/php
-
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get -y install tzdata
-
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    apt-get -y install \
-    apache2 \
+RUN apt-get update && apt-get install -y \
+    curl \
+    g++ \
+    git \
+    libbz2-dev \
+    libfreetype6-dev \
+    libicu-dev \
+    libjpeg-dev \
+    libmcrypt-dev \
+    libpng-dev \
+    libreadline-dev \
+    sudo \
     unzip \
-    php7.3 \
-    php7.3-cli \
-    libapache2-mod-php7.3 \
-    php7.3-gd \
-    php7.3-curl \
-    php7.3-json \
-    php7.3-mbstring \
-    php7.3-mysql \
-    php7.3-xml \
-    php7.3-xsl \
-    php7.3-zip \
-    php7.3-tokenizer \
-    php7.3-pdo
+    zip \
+ && docker-php-ext-install -j$(nproc) sockets pdo pdo_mysql mysqli && rm -rf /var/lib/apt/lists/*
+
 ##########################################################################
 FROM base as dependencies 
 
@@ -40,16 +31,15 @@ FROM dependencies as cli
 
 USER me
 
-WORKDIR /var/www
+WORKDIR /var/www/api
 
 ############################ SERVER ######################################
 FROM base
 
-RUN a2enmod php7.3
+WORKDIR /var/www/api
+
 RUN a2enmod rewrite
 
-ENV APACHE_RUN_USER www-data
-ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_PID_FILE /var/run/apache2.pid

@@ -1,0 +1,150 @@
+# Group API - Hospital
+
+## Geral [/api/hospital]
+
+### list hospitals [GET]
+
++ Request  (application/json)
+
+    + Headers
+
+            Authorization: YOUR TOKEN
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 3,
+                    "name": "teste",
+                    "address": "rua a",
+                    "city": "c",
+                    "created_at": "2020-04-18 22:13:58",
+                    "updated_at": "2020-04-18 22:13:58",
+                    "deleted_at": null
+                },
+                {
+                    "id": 4,
+                    "name": "teste",
+                    "address": "rua a",
+                    "city": "c",
+                    "created_at": "2020-04-18 22:13:59",
+                    "updated_at": "2020-04-18 22:13:59",
+                    "deleted_at": null
+                }
+            ]
+
+### create hospital [POST]
+
++ Request
+
+    + Headers
+
+            Authorization: YOUR TOKEN
+
+    + Body
+
+            {
+                "name": "teste",
+                "address": "rua a",
+                "city": "c"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 4,
+                "name": "teste",
+                "address": "rua a",
+                "city": "c",
+                "created_at": "2020-04-18 22:13:59",
+                "updated_at": "2020-04-18 22:13:59",
+                "deleted_at": null
+            }
+
+### find hospital by id [GET /hospital/{id}]
+
++ Parameters
+  + id: 4 (required)
+
++ Request
+
+    + Headers
+
+            Authorization: YOUR TOKEN
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 4,
+                "name": "teste",
+                "address": "rua a",
+                "city": "c",
+                "created_at": "2020-04-18 22:13:59",
+                "updated_at": "2020-04-18 22:13:59",
+                "deleted_at": null
+            }
+
+### delete hospital [DELETE /hospital/{id}]
+
++ Parameters
+  + id: 4 (required)
+
++ Request
+
+    + Headers
+
+            Authorization: YOUR TOKEN
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 4,
+                "name": "teste",
+                "address": "rua a",
+                "city": "c",
+                "created_at": "2020-04-18 22:13:59",
+                "updated_at": "2020-04-18 22:13:59",
+                "deleted_at": null
+            }
+
+### update hospital [PUT /hospital/{id}]
+
++ Parameters
+  + id: 4 (required)
+
++ Request
+
+    + Headers
+
+            Authorization: YOUR TOKEN
+
+    + Body
+
+            {
+                "name": "teste",
+                "address": "rua a",
+                "city": "d"
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "id": 4,
+                "name": "teste",
+                "address": "rua a",
+                "city": "d",
+                "created_at": "2020-04-18 22:13:59",
+                "updated_at": "2020-04-18 22:13:59",
+                "deleted_at": null
+            }
