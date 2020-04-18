@@ -9,10 +9,7 @@ use App\Entities\Hospital;
 use App\Exceptions\HospitalNotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HospitalRequest;
-use Dotenv\Exception\ValidationException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
-use Illuminate\Http\Request;
 
 final class HospitalController extends Controller
 {
@@ -44,14 +41,14 @@ final class HospitalController extends Controller
         return response()->json($hospital, 200);
     }
 
-    public function update(HospitalRequest $request, $id)
+    public function update(HospitalRequest $request, $id): JsonResponse
     {
         $hospital = $this->hospitalEloquentRepository->update($request->post(), (int)$id);
 
         return response()->json($hospital, 200);
     }
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $hospital = $this->hospitalEloquentRepository->delete((int)$id);
 

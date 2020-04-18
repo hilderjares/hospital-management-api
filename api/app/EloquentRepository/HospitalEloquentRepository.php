@@ -54,7 +54,8 @@ final class HospitalEloquentRepository implements HospitalRepository
         $hospital->name = $data['name'];
         $hospital->address = $data['address'];
         $hospital->city = $data['city'];
-
         $hospital->save();
+
+        return  $hospital;
     }
 }
