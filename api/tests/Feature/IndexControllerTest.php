@@ -8,18 +8,18 @@ use Tests\TestCase;
 
 class IndexControllerTest extends TestCase
 {
-    private const URI = "/api/doc";
+    private const URL = "/api/doc";
 
     public function testIfDocumentationResourceReturnsStatusOk()
     {
-        $response = $this->json("GET", self::URI);
+        $response = $this->json("GET", self::URL);
 
         $response->assertStatus(200);
     }
 
     public function testIfDocumentationResourceReturnsView()
     {
-        $response = $this->json("GET", self::URI);
+        $response = $this->json("GET", self::URL);
 
         $response->assertViewIs('index');
     }
